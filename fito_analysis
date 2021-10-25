@@ -1,0 +1,25 @@
+echo "# calliandra" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/jeschuler/calliandra.git
+git push -u origin main
+
+---
+  title: "R Notebook"
+output: html_notebook
+---
+  Pacotes
+```{r}
+library(readxl)
+```
+Importação
+```{r}
+Coordenadas <- read_excel("Coordenadas.xlsx", 
+                          skip = 1)
+colnames(Coordenadas)[2] <- "Cod_Analise"
+Dados_de_solo <- read_excel("Dados de solo.xlsx")
+colnames(Dados_de_solo)[c(1,2)] <- c("Rotulo_linhas","sitio")
+N_spp <- read_excel("N_spp.xlsx")
+```
