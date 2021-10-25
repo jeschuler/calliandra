@@ -23,3 +23,46 @@ Dados_de_solo <- read_excel("Dados de solo.xlsx")
 colnames(Dados_de_solo)[c(1,2)] <- c("Rotulo_linhas","sitio")
 N_spp <- read_excel("N_spp.xlsx")
 ```
+
+
+## Fitossociologia ANALISES DE COMPONENTES PRINCIPAIS
+
+setwd("/Users/jschuler/Documents/fitossociologia/calliandra")
+
+library(vegan)
+library(lme4)
+library(nlme)
+library(MASS)
+library(ggplot2)
+library(ggvegan)
+library(ggfortify)
+library(dabestr)
+library(ggbiplot)
+library(FactoMineR)
+
+
+##PCA espécies (duas formas de fazer)
+
+pca_spp <- read.csv("pca_spp.csv", h = T,
+                row.names = 1, ";")
+
+
+scores_spp <- PCA(pca_spp, scale.unit = TRUE) #ja dá os eigenvalues
+plot(scores_spp)
+
+scores_spp2 <- prcomp(pca_spp, center = TRUE,scale. = TRUE)
+biplot(scores_spp2)
+
+
+##PCA formas de vida (duas formas de fazer)
+
+pca_fv <- read.csv("pca_fv.csv", h = T,
+                    row.names = 1, ";")
+
+scores_fv <- PCA(pca_fv, scale.unit = TRUE)#ja dá os eigenvalues
+plot(scores_fv)
+summary(scores_fv)
+
+scores_fv2 <- prcomp(pca_fv, center = TRUE,scale. = TRUE)
+biplot(scores_fv2)
+###
